@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/amanb/Documents/amanDocs/DemoMe/app/src/main/res/layout/activity_home.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/amanb/Documents/amanDocs/DemoMe/app/src/main/res/layout/activity_login.xml" value="0.9032258064516129" />
+        <entry key="..\:/Users/amanb/Documents/amanDocs/DemoMe/app/src/main/res/layout/activity_main.xml" value="0.10144927536231885" />
+        <entry key="..\:/Users/amanb/Documents/amanDocs/DemoMe/app/src/main/res/layout/fragment_login.xml" value="0.10144927536231885" />
+        <entry key="..\:/Users/amanb/Documents/amanDocs/DemoMe/app/src/main/res/layout/fragment_volley_demo.xml" value="0.1" />
       </map>
     </option>
   </component>
