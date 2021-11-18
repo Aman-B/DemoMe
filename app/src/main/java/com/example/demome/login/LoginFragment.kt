@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.demome.R
 import com.example.demome.databinding.FragmentLoginBinding
 
@@ -53,7 +54,7 @@ class LoginFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.loginClicked.observe(viewLifecycleOwner, Observer <Int>{ loginButtonClicked() })
+        viewModel.isLoginSuccessful.observe(viewLifecycleOwner, Observer <Int>{ loginButtonClicked() })
 
         Log.i("login ", "onCreateView: ")
         return binding.root
@@ -61,18 +62,27 @@ class LoginFragment : Fragment() {
 
     private fun loginButtonClicked() {
 
-        if(viewModel.loginClicked.value==0)
+        if(viewModel.isLoginSuccessful.value==0)
         {
             Log.i("login ","clicked but some error is there.")
-            Toast.makeText(context,"Invalid Credentials!",Toast.LENGTH_LONG).show();
+            Toast.makeText(context,"Invalid email or password!",Toast.LENGTH_LONG).show();
 
 
         }
         else
         {
             Toast.makeText(context,"Login successful!",Toast.LENGTH_LONG).show();
-            Log.i("login ","clicked")
+            Log.i("login ","successful!")
+
+            //login successful, show next fragment
+            showVolleyDemoFragment()
+
         }
+    }
+
+    private fun showVolleyDemoFragment() {
+        val action = LoginFragmentDirections.actionLoginFragmentToVolleyDemo();
+        findNavController().navigate(action)
     }
 
     companion object {

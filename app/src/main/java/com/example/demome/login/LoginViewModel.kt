@@ -1,9 +1,5 @@
 package com.example.demome.login
 
-import android.app.Activity
-import android.util.Log
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -11,27 +7,27 @@ class LoginViewModel : ViewModel() {
 
      var user:User
 
-     val emailID = String
-     val password = String
+     val emailID = MutableLiveData<String> ()
+     val password = MutableLiveData<String>()
 
 
-    var loginClicked = MutableLiveData<Int>()
+    var isLoginSuccessful = MutableLiveData<Int>()
 
     init {
         this.user= User("","")
     }
 
-    fun onLoginBtnClicked(email:String,password:String){
-        user.setEmail(email)
-        user.setPassword(password)
+    fun onLoginBtnClicked(){
+        user.setEmail(emailID.value.toString())
+        user.setPassword(password.value.toString())
 
         if(!user.isDataValid)
         {
-            loginClicked.value=0;
+            isLoginSuccessful.value=0;
         }
         else
         {
-            loginClicked.value=1
+            isLoginSuccessful.value=1
         }
     }
 
