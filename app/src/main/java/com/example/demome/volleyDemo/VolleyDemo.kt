@@ -41,11 +41,8 @@ class VolleyDemo : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    var dataForVolley: DataForVolley? = null;
 
-    private lateinit var userImageIV:ImageView
-    private lateinit var name:TextView
-    private lateinit var email : TextView
+    private lateinit var userImageIV: ImageView
 
 
     private lateinit var viewModel: VollyDemoViewModel
@@ -79,9 +76,10 @@ class VolleyDemo : Fragment() {
         //assign lifecycle to viewmodel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        //observe the url to update imageView. This is done here because Glide needs context.
         viewModel.imageURL.observe(viewLifecycleOwner, Observer { updateImageInUI(it) })
 
-        userImageIV= binding.userImageIV
+        userImageIV = binding.userImageIV
 
         return binding.root
     }
@@ -97,63 +95,7 @@ class VolleyDemo : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        /*userImageIV = view.findViewById(R.id.userImage_IV)
-        name = view.findViewById(R.id.name_ET)
-        email = view.findViewById(R.id.email_ET)
-
-        // Instantiate the RequestQueue.
-        val queue = Volley.newRequestQueue(context)
-        val url = "https://reqres.in/api/users/2"
-
-        var jsonRequest = JsonObjectRequest(Request.Method.GET,url,null,
-            {response->
-                Log.i("Volley ", " response "+ response);
-                updateResponseInUI(response)
-            },
-            {
-                Toast.makeText(context,"That didn't work!",Toast.LENGTH_LONG).show()
-                Log.i("Volley ", " error "+it);
-            })
-
-
-
-        // Add the request to the RequestQueue.
-        queue.add(jsonRequest)*/
-
     }
-
-    private fun updateResponseInUI(response: JSONObject) {
-        dataForVolley = convertJsonToData(response)
-        Log.i("volley ", " data "+ (dataForVolley?.data?.firstName ?: dataForVolley))
-
-
-        setUpUIElements(dataForVolley)
-    }
-
-    private fun convertJsonToData(response: JSONObject): DataForVolley? {
-        var gson = Gson();
-
-        var data=gson.fromJson(response.toString(),DataForVolley::class.java)
-        return data
-    }
-
-
-    private fun setUpUIElements(dataForVolley: DataForVolley?)
-    {
-        name.setText(dataForVolley?.data?.firstName+" "+dataForVolley?.data?.lastName)
-        email.setText(dataForVolley?.data?.email)
-
-     /*   Glide
-            .with(this)
-            .load(dataForVolley?.data?.avatar)
-            .centerCrop()
-            .placeholder(R.drawable.ic_launcher_background)
-            .into(userImageIV);*/
-
-
-    }
-
 
     companion object {
         /**
@@ -175,7 +117,5 @@ class VolleyDemo : Fragment() {
             }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
+
 }
