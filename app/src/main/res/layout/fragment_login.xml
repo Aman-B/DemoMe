@@ -58,16 +58,16 @@
 
         <Button
             android:id="@+id/login_button"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:layout_marginTop="64dp"
             android:onClick="@{() -> loginViewModel.onLoginBtnClicked()}"
+            android:text="Login"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.741"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/password_ET"
+            app:layout_constraintStart_toStartOf="@+id/password_ET"
             app:layout_constraintTop_toBottomOf="@+id/password_ET"
-            app:layout_constraintVertical_bias="0.257" />
+            app:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

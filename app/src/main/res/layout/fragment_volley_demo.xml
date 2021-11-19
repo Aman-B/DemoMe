@@ -41,8 +41,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:textSize="22sp"
             android:text="@={vollyDemoViewModel.name}"
+            android:textColor="#000"
+            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/userImage_IV"
             app:layout_constraintTop_toTopOf="@+id/userImage_IV" />
@@ -56,6 +57,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="544dp"
             android:text="@={vollyDemoViewModel.email}"
+            android:textColor="#000"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/name_ET"
