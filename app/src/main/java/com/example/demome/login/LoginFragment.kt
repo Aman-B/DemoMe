@@ -37,8 +37,8 @@ class LoginFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View?
-    {
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate view and obtain an instance of the binding class
         binding = DataBindingUtil.inflate(
             inflater,
@@ -54,7 +54,9 @@ class LoginFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.isLoginSuccessful.observe(viewLifecycleOwner, Observer <Int>{ loginButtonClicked() })
+        viewModel.isLoginSuccessful.observe(
+            viewLifecycleOwner,
+            Observer<Int> { loginButtonClicked() })
 
         Log.i("login ", "onCreateView: ")
         return binding.root
@@ -62,17 +64,14 @@ class LoginFragment : Fragment() {
 
     private fun loginButtonClicked() {
 
-        if(viewModel.isLoginSuccessful.value==0)
-        {
-            Log.i("login ","clicked but some error is there.")
-            Toast.makeText(context,"Invalid email or password!",Toast.LENGTH_LONG).show();
+        if (viewModel.isLoginSuccessful.value == 0) {
+            Log.i("login ", "clicked but some error is there.")
+            Toast.makeText(context, "Invalid email or password!", Toast.LENGTH_LONG).show();
 
 
-        }
-        else
-        {
-            Toast.makeText(context,"Login successful!",Toast.LENGTH_LONG).show();
-            Log.i("login ","successful!")
+        } else {
+            Toast.makeText(context, "Login successful!", Toast.LENGTH_LONG).show();
+            Log.i("login ", "successful!")
 
             //login successful, show next fragment
             showVolleyDemoFragment()
@@ -84,9 +83,8 @@ class LoginFragment : Fragment() {
         if (findNavController().currentDestination?.id == R.id.loginFragment) {
             val action = LoginFragmentDirections.actionLoginFragmentToVolleyDemo();
             findNavController().navigate(action)
-        }
-        else{
-            Log.i("destination "," "+findNavController().currentDestination?.id)
+        } else {
+            Log.i("destination ", " " + findNavController().currentDestination?.id)
         }
     }
 
