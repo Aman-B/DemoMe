@@ -81,8 +81,13 @@ class LoginFragment : Fragment() {
     }
 
     private fun showVolleyDemoFragment() {
-        val action = LoginFragmentDirections.actionLoginFragmentToVolleyDemo();
-        findNavController().navigate(action)
+        if (findNavController().currentDestination?.id == R.id.loginFragment) {
+            val action = LoginFragmentDirections.actionLoginFragmentToVolleyDemo();
+            findNavController().navigate(action)
+        }
+        else{
+            Log.i("destination "," "+findNavController().currentDestination?.id)
+        }
     }
 
     companion object {

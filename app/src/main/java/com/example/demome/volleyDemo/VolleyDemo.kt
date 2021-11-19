@@ -9,12 +9,18 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.example.demome.R
+import com.example.demome.databinding.FragmentLoginBinding
+import com.example.demome.databinding.FragmentVolleyDemoBinding
+import com.example.demome.login.LoginViewModel
 import com.google.gson.Gson
 import org.json.JSONObject
 import org.w3c.dom.Text
@@ -30,6 +36,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class VolleyDemo : Fragment() {
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -39,6 +46,10 @@ class VolleyDemo : Fragment() {
     private lateinit var userImageIV:ImageView
     private lateinit var name:TextView
     private lateinit var email : TextView
+
+
+    private lateinit var viewModel: VollyDemoViewModel
+    private lateinit var binding: FragmentVolleyDemoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,14 +63,42 @@ class VolleyDemo : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_volley_demo, container, false)
+
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_volley_demo,
+            container,
+            false
+        )
+
+        viewModel = ViewModelProvider(this).get(VollyDemoViewModel::class.java)
+
+        //assign the viewModel
+        binding.vollyDemoViewModel = viewModel;
+
+        //assign lifecycle to viewmodel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        viewModel.imageURL.observe(viewLifecycleOwner, Observer { updateImageInUI(it) })
+
+        userImageIV= binding.userImageIV
+
+        return binding.root
+    }
+
+    private fun updateImageInUI(it: String?) {
+        Glide
+            .with(this)
+            .load(it)
+            .centerCrop()
+            .placeholder(R.mipmap.ic_launcher)
+            .into(userImageIV)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        userImageIV = view.findViewById(R.id.userImage_IV)
+        /*userImageIV = view.findViewById(R.id.userImage_IV)
         name = view.findViewById(R.id.name_ET)
         email = view.findViewById(R.id.email_ET)
 
@@ -79,8 +118,8 @@ class VolleyDemo : Fragment() {
 
 
 
-// Add the request to the RequestQueue.
-        queue.add(jsonRequest)
+        // Add the request to the RequestQueue.
+        queue.add(jsonRequest)*/
 
     }
 
@@ -105,12 +144,12 @@ class VolleyDemo : Fragment() {
         name.setText(dataForVolley?.data?.firstName+" "+dataForVolley?.data?.lastName)
         email.setText(dataForVolley?.data?.email)
 
-        Glide
+     /*   Glide
             .with(this)
             .load(dataForVolley?.data?.avatar)
             .centerCrop()
             .placeholder(R.drawable.ic_launcher_background)
-            .into(userImageIV);
+            .into(userImageIV);*/
 
 
     }
@@ -134,5 +173,9 @@ class VolleyDemo : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 }
