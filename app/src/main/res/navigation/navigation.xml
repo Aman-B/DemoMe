@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/volleyDemo"
-        android:name="com.example.demome.volleyDemo.VolleyDemo"
+        android:name="com.example.demome.volleyDemo.VolleyDemoFragment"
         android:label="fragment_volley_demo"
         tools:layout="@layout/fragment_volley_demo" />
 </navigation>
