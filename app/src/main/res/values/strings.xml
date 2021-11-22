@@ -2,4 +2,15 @@
     <string name="app_name">DemoMe</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dummy_response">{     \"data\": {         \"id\": 2,         \"email\": \"emailerror@reqres.in\",         \"first_name\": \"Some\",         \"last_name\": \"Error\",         \"avatar\": \"https://reqres.in/img/faces/2-image.jpg\"     },     \"support\": {         \"url\": \"https://reqres.in/#support-heading\",         \"text\": \"To keep ReqRes free, contributions towards server costs are appreciated!\"     } }</string>
+    <string name="quit_app_title">Quit the app?</string>
+    <string name="quit_app_message">Are you sure you want to quite the app?</string>
+    <string name="yes_quit_option">Yes, quit.</string>
+    <string name="dont_quit_option">No, don\'t quit the app.</string>
+    <string name="see_tutorial">See Tutorial</string>
+    <string name="see_login_and_volley">See Login And Volley</string>
+    <string name="next">Next</string>
+    <string name="enter_email_here">Enter email here...</string>
+    <string name="enter_password_here">Enter password here...</string>
+    <string name="login">Login</string>
 </resources>

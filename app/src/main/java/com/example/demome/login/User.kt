@@ -22,6 +22,7 @@ class User(private var email: String, private var password: String) {
                 && getPassword().equals(validPassword)
     }
 
+
     fun setEmail(email: String) {
         this.email = email
     }
